@@ -7,6 +7,11 @@ import { services } from "@/lib/services";
 import { motion } from "framer-motion";
 import { ArrowRight, GraduationCap, Sparkles } from "lucide-react";
 import Link from "next/link";
+import CountUp from "../components/CountUp";
+import ParticlesBackground from "../components/ParticlesBackground";
+import AnimatedText from "../components/AnimatedText";
+import HeroImage from "../components/HeroImage";
+import Typewriter from "@/components/Typewriter";
 
 const stats = [
   { value: "50+", label: "Projects" },
@@ -21,8 +26,13 @@ const academyFeatures = [
 ];
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 28, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: [0.2, 0.8, 0.2, 1] },
+  },
 };
 
 export default function Home() {
@@ -30,8 +40,17 @@ export default function Home() {
     <main className="min-h-screen bg-ink text-white">
       <Navbar />
 
-      <section id="home" className="circuit-surface relative overflow-hidden border-b border-white/10">
-        <div className="relative mx-auto flex min-h-[560px] max-w-[1120px] flex-col items-center px-4 pb-14 pt-3 text-center sm:px-6 lg:px-8">
+      <section id="home" className="relative overflow-hidden border-b border-white/10 bg-ink">
+        {/* Hero image (next/image) with parallax and slow zoom */}
+        <HeroImage />
+
+        {/* Particles background (tsParticles via CDN) - sits above image */}
+        <ParticlesBackground />
+
+        {/* Overlay to ensure readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/20 via-ink/60 to-ink z-20" />
+
+        <div className="relative z-30 mx-auto flex min-h-[560px] max-w-[1120px] flex-col items-center px-4 pb-14 pt-3 text-center sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -49,49 +68,64 @@ export default function Home() {
             className="mt-9"
           >
             <h1 className="mx-auto max-w-5xl text-balance text-[42px] font-black leading-[1.04] tracking-tight text-white sm:text-6xl lg:text-[70px]">
-              <span className="block">Innovative Digital & AI</span>
-              <span className="block">
-                Solutions for <span className="gold-text">Modern</span>
-              </span>
-              <span className="gold-text block">Businesses</span>
+              <div className="block">
+                <AnimatedText type="words">Innovative Digital & AI</AnimatedText>
+              </div>
+              <div className="block">
+                <AnimatedText type="words">Solutions for</AnimatedText>{" "}
+                <AnimatedText type="words" className="gold-text inline-block">
+                  Modern
+                </AnimatedText>
+              </div>
+              <div className="gold-text block">
+                <AnimatedText type="chars">Businesses</AnimatedText>
+              </div>
             </h1>
-            <p className="mt-8 text-xl font-semibold text-muted sm:text-2xl">
-              We Build. We Automate. We Grow Brands.
-            </p>
+            <div className="mt-8 text-xl font-semibold text-muted sm:text-2xl">
+              <Typewriter texts={["We Build.", "We Automate.", "We Grow Brands."]} loop className="inline-block" />
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.16 }}
-            className="mt-12 flex w-full max-w-lg flex-col gap-4 sm:flex-row sm:justify-center"
+            className="mt-12 flex w-full max-w-xl flex-col gap-4 sm:flex-row sm:justify-center items-center"
           >
-            <Link
-              href="/contact"
-              className="gold-button inline-flex min-h-14 items-center justify-center gap-3 rounded-xl px-8 text-base font-black text-black transition"
-            >
-              Book Appointment <ArrowRight size={18} aria-hidden />
-            </Link>
-            <Link
-              href="/services"
-              className="inline-flex min-h-14 items-center justify-center rounded-xl border-2 border-gold bg-black/30 px-8 text-base font-black text-gold transition hover:bg-gold hover:text-black"
-            >
-              View Services
-            </Link>
+            <motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.995 }} transition={{ type: "spring", stiffness: 350 }}>
+              <Link
+                href="/book-appointment"
+                className="gold-button inline-flex items-center justify-center gap-3 rounded-xl px-10 py-4 text-base font-black text-black transition shadow-glow ring-1 ring-gold/20"
+              >
+                Book Appointment <ArrowRight size={18} aria-hidden />
+              </Link>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -3 }} transition={{ duration: 0.24 }}>
+              <Link
+                href="/services"
+                className="inline-flex items-center justify-center rounded-xl border-2 border-gold bg-black/30 px-10 py-4 text-base font-black text-gold transition hover:bg-gold hover:text-black shadow-outline"
+              >
+                View Services
+              </Link>
+            </motion.div>
           </motion.div>
 
           <motion.div
             initial="hidden"
-            animate="show"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
             variants={{
               hidden: {},
               show: { transition: { staggerChildren: 0.08, delayChildren: 0.24 } },
             }}
-            className="mt-20 grid w-full max-w-xl grid-cols-3 gap-4"
+            className="mt-20 grid w-full max-w-xl grid-cols-3 gap-8"
           >
-            {stats.map((stat) => (
+            {stats.map((stat, i) => (
               <motion.div key={stat.label} variants={fadeUp} className="text-center">
-                <p className="text-4xl font-black text-gold">{stat.value}</p>
+                <p className="text-5xl sm:text-6xl font-black text-gold">
+                  <CountUp value={stat.value} delay={i * 550} hold={5000} alwaysOn />
+                </p>
                 <p className="mt-2 text-base text-muted">{stat.label}</p>
               </motion.div>
             ))}
@@ -194,7 +228,7 @@ export default function Home() {
           </div>
 
           <Link
-            href="/contact"
+            href="https://johnabtechnologieslimited.lovable.app/"
             className="gold-button mt-14 inline-flex min-h-16 items-center justify-center gap-3 rounded-xl px-12 text-lg font-black text-black transition"
           >
             Visit Academy Landing Page <ArrowRight size={20} aria-hidden />

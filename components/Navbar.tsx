@@ -11,7 +11,7 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
-  { label: "Book Appointment", href: "/contact" },
+  { label: "Enroll Now", href: "https://johnabtechnologieslimited.lovable.app/" },
 ];
 
 export default function Navbar() {
@@ -33,6 +33,10 @@ export default function Navbar() {
 
     if (href === "/contact") {
       return pathname === "/contact";
+    }
+
+    if (href === "/book-appointment") {
+      return pathname === "/book-appointment";
     }
 
     return false;
@@ -70,13 +74,13 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="/services"
+            href="https://johnabtechnologieslimited.lovable.app/"
             className="rounded-lg border-2 border-gold px-5 py-2.5 text-sm font-black text-gold transition hover:bg-gold hover:text-black"
           >
-            Get Started
+            Join Johnab Academy
           </Link>
           <Link
-            href="/contact"
+            href="https://calendly.com/johnabtechnologieslimited/30min"
             className="gold-button rounded-lg px-5 py-3 text-sm font-black text-black transition"
           >
             Book Appointment
@@ -117,14 +121,14 @@ export default function Navbar() {
             </div>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <Link
-                href="/services"
+                href="https://johnabtechnologieslimited.lovable.app/"
                 className="rounded-lg border-2 border-gold px-5 py-3 text-center text-sm font-black text-gold"
                 onClick={() => setIsOpen(false)}
               >
-                Get Started
+                Join Johnab Academy
               </Link>
               <Link
-                href="/contact"
+                href="https://calendly.com/johnabtechnologieslimited/30min"
                 className="rounded-lg bg-gold px-5 py-3 text-center text-sm font-black text-black"
                 onClick={() => setIsOpen(false)}
               >

@@ -93,3 +93,83 @@ textarea {
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
+
+/* Animated hero background: two blurred colorful blobs + subtle gradient */
+.hero-animated-bg {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%);
+}
+.hero-animated-bg::before,
+.hero-animated-bg::after {
+  content: "";
+  position: absolute;
+  width: 70rem;
+  height: 70rem;
+  border-radius: 50%;
+  filter: blur(120px) saturate(120%);
+  opacity: 0.7;
+  transform: translate3d(-20%, -10%, 0);
+  will-change: transform;
+}
+.hero-animated-bg::before {
+  left: -20%;
+  top: -30%;
+  background: radial-gradient(circle at 30% 30%, #ffb800 0%, #ff6a88 35%, transparent 60%);
+  animation: float-blob 12s ease-in-out infinite alternate;
+}
+.hero-animated-bg::after {
+  right: -10%;
+  bottom: -30%;
+  background: radial-gradient(circle at 70% 70%, #6a9cff 0%, #8e5bff 30%, transparent 60%);
+  animation: float-blob 16s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes float-blob {
+  0% { transform: translate3d(-10%, -8%, 0) scale(1); }
+  50% { transform: translate3d(6%, 6%, 0) scale(1.05) rotate(6deg); }
+  100% { transform: translate3d(-10%, 10%, 0) scale(1); }
+}
+
+/* Make sure hero content sits above background */
+.hero-animated-bg,
+.hero-animated-bg::before,
+.hero-animated-bg::after {
+  pointer-events: none;
+}
+
+/* Hero image parallax + slow zoom (subtle cinematic effect) */
+.hero-parallax {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.hero-image-scale {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  animation: hero-slow-zoom 30s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+@keyframes hero-slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.035); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image-scale { animation: none !important; }
+  .hero-parallax { transition: none !important; }
+}
+
+/* Make particles follow pointer via transform updates from AppProviders */
+#tsparticles-hero {
+  transform: translate3d(0, 0, 0);
+  transition: transform 120ms linear;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* CountUp tooltip */
+.countup-tooltip {
+  z-index: 50;
+  transform-origin: bottom center;
+}

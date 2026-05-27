@@ -17,14 +17,14 @@ const contactMethods = [
   },
   {
     title: "Email",
-    value: "johnabcompany@gmail.com",
-    href: "mailto:johnabcompany@gmail.com",
+    value: "Johnabtechnologieslimited@gmail.com",
+    href: "mailto:Johnabtechnologieslimited@gmail.com",
     icon: Mail,
   },
   {
     title: "Website",
-    value: "www.johnabcompany.com",
-    href: "https://www.johnabcompany.com",
+    value: "www.Johnabtechnologieslimited.com",
+    href: "https://www.Johnabtechnologieslimited.com",
     icon: Globe,
   },
   {

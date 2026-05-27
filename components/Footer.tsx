@@ -6,7 +6,7 @@ const quickLinks = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
-  { label: "Book Appointment", href: "/contact" },
+  { label: "Book Appointment", href: "/book-appointment" },
 ];
 
 const services = [
@@ -22,7 +22,7 @@ export default function Footer() {
     <footer id="contact" className="border-t border-white/10 bg-panel">
       <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Link href="#home" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-gold text-lg font-black text-black">
               J
             </span>
@@ -59,7 +59,7 @@ export default function Footer() {
           <ul className="mt-6 space-y-4">
             {services.map((service) => (
               <li key={service}>
-                <Link href="#services" className="text-base text-slate-400 transition hover:text-gold">
+                <Link href="/services" className="text-base text-slate-400 transition hover:text-gold">
                   {service}
                 </Link>
               </li>
@@ -77,18 +77,18 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:johnabcompany@gmail.com"
+                href="mailto:Johnabtechnologieslimited@gmail.com"
                 className="inline-flex items-center gap-3 transition hover:text-gold"
               >
-                <Mail size={17} className="text-gold" aria-hidden /> johnabcompany@gmail.com
+                <Mail size={17} className="text-gold" aria-hidden /> Johnabtechnologieslimited@gmail.com
               </a>
             </li>
             <li>
               <a
-                href="https://www.johnabcompany.com"
+                href="https://www.Johnabtechnologieslimited.com"
                 className="inline-flex items-center gap-3 transition hover:text-gold"
               >
-                <Globe size={17} className="text-gold" aria-hidden /> www.johnabcompany.com
+                <Globe size={17} className="text-gold" aria-hidden /> www.Johnabtechnologieslimited.com
               </a>
             </li>
             <li>
