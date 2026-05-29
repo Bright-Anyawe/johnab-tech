@@ -111,10 +111,10 @@ export default function ServicesPage() {
           </div>
 
           <Link
-            href="https://johnabtechnologieslimited.lovable.app/"
+            href="/academy"
             className="gold-button mt-14 inline-flex min-h-16 items-center justify-center gap-3 rounded-xl px-12 text-lg font-black text-black transition"
           >
-            Visit Academy Landing Page <ArrowRight size={20} aria-hidden />
+            Visit Academy <ArrowRight size={20} aria-hidden />
           </Link>
         </motion.div>
       </section>

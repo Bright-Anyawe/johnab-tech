@@ -30,7 +30,7 @@ const bookingOptions = [
     price: "$10",
     suffix: "/ lifetime",
     cta: "Join Academy",
-    href: "https://johnabtechnologieslimited.lovable.app/",
+    href: "/academy",
     icon: GraduationCap,
     popular: true,
     features: [

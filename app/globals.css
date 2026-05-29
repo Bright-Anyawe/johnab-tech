@@ -168,6 +168,12 @@ textarea {
   pointer-events: none;
 }
 
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246, 189, 8, 0.3), transparent);
+}
+
 /* CountUp tooltip */
 .countup-tooltip {
   z-index: 50;

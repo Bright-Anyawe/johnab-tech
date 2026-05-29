@@ -11,7 +11,7 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
-  { label: "Enroll Now", href: "https://johnabtechnologieslimited.lovable.app/" },
+  { label: "Enroll Now", href: "/academy" },
 ];
 
 export default function Navbar() {
@@ -74,7 +74,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="https://johnabtechnologieslimited.lovable.app/"
+            href="/academy"
             className="rounded-lg border-2 border-gold px-5 py-2.5 text-sm font-black text-gold transition hover:bg-gold hover:text-black"
           >
             Join Johnab Academy
@@ -121,7 +121,7 @@ export default function Navbar() {
             </div>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               <Link
-                href="https://johnabtechnologieslimited.lovable.app/"
+                href="/academy"
                 className="rounded-lg border-2 border-gold px-5 py-3 text-center text-sm font-black text-gold"
                 onClick={() => setIsOpen(false)}
               >
