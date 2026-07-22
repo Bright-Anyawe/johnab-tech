@@ -61,9 +61,7 @@ export default function FinalCTASection() {
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
-            href="https://selar.com/q5510a1774"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/academy#pricing"
             className="gold-button inline-flex items-center gap-3 rounded-xl px-12 py-5 text-lg font-black text-black shadow-glow ring-1 ring-gold/20 transition hover:brightness-110"
           >
             Enroll Now — Limited Spots <ArrowRight size={20} aria-hidden />

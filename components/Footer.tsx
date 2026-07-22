@@ -86,6 +86,8 @@ export default function Footer() {
             <li>
               <a
                 href="https://www.Johnabtechnologieslimited.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 transition hover:text-gold"
               >
                 <Globe size={17} className="text-gold" aria-hidden /> www.Johnabtechnologieslimited.com

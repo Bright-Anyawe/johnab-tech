@@ -11,36 +11,14 @@ const navItems = [
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Contact", href: "/contact" },
-  { label: "Enroll Now", href: "/academy" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
-
-    if (href === "/services") {
-      return pathname === "/services";
-    }
-
-    if (href === "/portfolio") {
-      return pathname === "/portfolio";
-    }
-
-    if (href === "/contact") {
-      return pathname === "/contact";
-    }
-
-    if (href === "/book-appointment") {
-      return pathname === "/book-appointment";
-    }
-
-    return false;
-  };
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#090909]/95 backdrop-blur-md">
@@ -77,10 +55,10 @@ export default function Navbar() {
             href="/academy"
             className="rounded-lg border-2 border-gold px-5 py-2.5 text-sm font-black text-gold transition hover:bg-gold hover:text-black"
           >
-            Join Johnab Academy
+            Enroll Now
           </Link>
           <Link
-            href="https://calendly.com/johnabtechnologieslimited/30min"
+            href="/book-appointment"
             className="gold-button rounded-lg px-5 py-3 text-sm font-black text-black transition"
           >
             Book Appointment
@@ -125,10 +103,10 @@ export default function Navbar() {
                 className="rounded-lg border-2 border-gold px-5 py-3 text-center text-sm font-black text-gold"
                 onClick={() => setIsOpen(false)}
               >
-                Join Johnab Academy
+                Enroll Now
               </Link>
               <Link
-                href="https://calendly.com/johnabtechnologieslimited/30min"
+                href="/book-appointment"
                 className="rounded-lg bg-gold px-5 py-3 text-center text-sm font-black text-black"
                 onClick={() => setIsOpen(false)}
               >

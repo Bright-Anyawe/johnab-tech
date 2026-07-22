@@ -3,14 +3,13 @@
 import { motion } from "framer-motion";
 import {
   Check,
-  ArrowRight,
-  Sparkles,
   Building2,
   User,
   Hash,
   CreditCard,
 } from "lucide-react";
 import { useState } from "react";
+import PaystackCheckout from "./PaystackCheckout";
 
 const bankDetails = [
   { icon: Hash, label: "Account Number", value: "1959349693" },
@@ -68,6 +67,11 @@ export default function PaymentSection() {
           }}
           className="mt-16 grid gap-8 md:mx-auto md:max-w-3xl"
         >
+          {/* Paystack Card Payment */}
+          <motion.div variants={fadeUp}>
+            <PaystackCheckout amount={10} productName="AI Mastery Class" />
+          </motion.div>
+
           {/* Bank Transfer */}
           <motion.div
             variants={fadeUp}
@@ -121,32 +125,6 @@ export default function PaymentSection() {
               After payment, contact us on WhatsApp for confirmation and
               instant access.
             </div>
-          </motion.div>
-
-          {/* Selar Payment */}
-          <motion.div
-            variants={fadeUp}
-            className="reference-card rounded-2xl border border-white/10 p-8 text-center"
-          >
-            <div className="grid h-14 w-14 place-items-center rounded-xl bg-gold text-black shadow-glow mx-auto">
-              <CreditCard size={26} aria-hidden />
-            </div>
-            <h3 className="mt-4 text-xl font-black text-white">
-              Pay with Card (Selar)
-            </h3>
-            <p className="mt-1 text-sm text-slate-400">
-              Secure online payment via Selar
-            </p>
-            <a
-              href="https://selar.com/q5510a1774"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gold-button mt-6 inline-flex items-center gap-3 rounded-xl px-10 py-4 text-base font-black text-black shadow-glow ring-1 ring-gold/20 transition hover:brightness-110"
-            >
-              <CreditCard size={18} aria-hidden /> Pay Now & Enroll{" "}
-              <ArrowRight size={18} aria-hidden />
-            </a>
-            <p className="mt-4 text-xs text-muted">🔒 Secure payment</p>
           </motion.div>
         </motion.div>
 

@@ -3,10 +3,26 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, GraduationCap, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, CalendarCheck, CheckCircle2, GraduationCap, ShieldCheck, UserRound } from "lucide-react";
 import Link from "next/link";
 
 const bookingOptions = [
+  {
+    title: "Free Consultation",
+    description: "A 30-minute call to discuss your goals and find the right path for you.",
+    price: "Free",
+    suffix: "/ 30 mins",
+    cta: "Book a Call",
+    href: "https://calendly.com/johnabtechnologieslimited/30min",
+    icon: CalendarCheck,
+    popular: false,
+    features: [
+      "One-on-one video call",
+      "Goal & needs assessment",
+      "Personalized recommendation",
+      "No commitment required",
+    ],
+  },
   {
     title: "One-on-One Mentorship",
     description: "Personal live session where I teach you exactly what you want to learn.",
@@ -75,7 +91,7 @@ export default function BookAppointmentPage() {
       </section>
 
       <section className="bg-ink py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="show"
@@ -84,7 +100,7 @@ export default function BookAppointmentPage() {
               hidden: {},
               show: { transition: { staggerChildren: 0.08 } },
             }}
-            className="grid gap-8 md:grid-cols-2"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {bookingOptions.map((option) => {
               const Icon = option.icon;
