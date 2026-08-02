@@ -12,7 +12,6 @@ import {
   XCircle,
   MessageCircle,
 } from "lucide-react";
-import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 
 declare global {
@@ -265,7 +264,6 @@ export default function PathsSection() {
           {paths.map((path) => {
             const Icon = path.icon;
             const isCheckout = checkoutPath === path.title && "payAmount" in path;
-            const isExternal = path.href.startsWith("http");
 
             return (
               <motion.article
@@ -311,24 +309,13 @@ export default function PathsSection() {
                       ))}
                     </ul>
 
-                    {"payAmount" in path ? (
-                      <button
-                        type="button"
-                        onClick={() => setCheckoutPath(path.title)}
-                        className="gold-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg text-sm font-black text-black transition"
-                      >
-                        {path.cta} <ArrowRight size={16} aria-hidden />
-                      </button>
-                    ) : (
-                      <Link
-                        href={path.href}
-                        target={isExternal ? "_blank" : undefined}
-                        rel={isExternal ? "noopener noreferrer" : undefined}
-                        className="gold-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg text-sm font-black text-black transition"
-                      >
-                        {path.cta} <ArrowRight size={16} aria-hidden />
-                      </Link>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => setCheckoutPath(path.title)}
+                      className="gold-button mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg text-sm font-black text-black transition"
+                    >
+                      {path.cta} <ArrowRight size={16} aria-hidden />
+                    </button>
                   </>
                 )}
               </motion.article>
