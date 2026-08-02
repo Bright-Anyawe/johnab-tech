@@ -5,7 +5,8 @@ import HeroSection from "@/components/academy/HeroSection";
 import AboutSection from "@/components/academy/AboutSection";
 import ModulesSection from "@/components/academy/ModulesSection";
 import BonusesSection from "@/components/academy/BonusesSection";
-import InstructorSection from "@/components/academy/InstructorSection";
+import FacilitatorSection from "@/components/academy/FacilitatorSection";
+import PathsSection from "@/components/academy/PathsSection";
 import PaymentSection from "@/components/academy/PaymentSection";
 import FinalCTASection from "@/components/academy/FinalCTASection";
 
@@ -44,9 +45,11 @@ export default function AcademyPage() {
         <div className="section-divider" />
         <BonusesSection />
         <div className="section-divider" />
-        <InstructorSection />
+        <PathsSection />
         <div className="section-divider" />
         <PaymentSection />
+        <div className="section-divider" />
+        <FacilitatorSection />
         <div className="section-divider" />
         <FinalCTASection />
       </main>

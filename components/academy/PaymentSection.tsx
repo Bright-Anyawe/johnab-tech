@@ -69,7 +69,7 @@ export default function PaymentSection() {
         >
           {/* Paystack Card Payment */}
           <motion.div variants={fadeUp}>
-            <PaystackCheckout amount={10} productName="AI Mastery Class" />
+            <PaystackCheckout amount={16000} usdAmount={10} productName="AI Mastery Class" />
           </motion.div>
 
           {/* Bank Transfer */}

@@ -3,17 +3,17 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { motion } from "framer-motion";
-import { ArrowRight, CalendarCheck, CheckCircle2, GraduationCap, ShieldCheck, UserRound } from "lucide-react";
+import { ArrowRight, CalendarCheck, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 const bookingOptions = [
   {
     title: "Free Consultation",
-    description: "A 30-minute call to discuss your goals and find the right path for you.",
+    description: "A 15-minute call to discuss your goals and find the right path for you.",
     price: "Free",
-    suffix: "/ 30 mins",
+    suffix: "/ 15 mins",
     cta: "Book a Call",
-    href: "https://calendly.com/johnabtechnologieslimited/30min",
+    href: "https://calendly.com/johnabtechnologieslimited/15min",
     icon: CalendarCheck,
     popular: false,
     features: [
@@ -21,40 +21,6 @@ const bookingOptions = [
       "Goal & needs assessment",
       "Personalized recommendation",
       "No commitment required",
-    ],
-  },
-  {
-    title: "One-on-One Mentorship",
-    description: "Personal live session where I teach you exactly what you want to learn.",
-    price: "$70",
-    suffix: "/ lifetime",
-    cta: "Book Mentorship",
-    href: "https://api.whatsapp.com/send?phone=2348159574995&text=Hi%2C%20I%20want%20to%20book%20a%20One-on-One%20Mentorship%20session",
-    icon: UserRound,
-    popular: false,
-    features: [
-      "2-3 hours call",
-      "3 times meetings",
-      "Personalized curriculum",
-      "Screen sharing & demos",
-      "Recording Allowed",
-    ],
-  },
-  {
-    title: "Johnab Academy Registration",
-    description: "Full access to Johnab Academy training and all course materials.",
-    price: "$10",
-    suffix: "/ lifetime",
-    cta: "Join Academy",
-    href: "/academy",
-    icon: GraduationCap,
-    popular: true,
-    features: [
-      "Full course library access",
-      "Step-by-step tutorials",
-      "Downloadable resources",
-      "Community access",
-      "Certificate on completion",
     ],
   },
 ];
@@ -100,7 +66,7 @@ export default function BookAppointmentPage() {
               hidden: {},
               show: { transition: { staggerChildren: 0.08 } },
             }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="mx-auto grid max-w-md gap-8"
           >
             {bookingOptions.map((option) => {
               const Icon = option.icon;

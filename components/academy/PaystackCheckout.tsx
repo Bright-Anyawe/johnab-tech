@@ -2,9 +2,11 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { CreditCard, ArrowRight, Loader2, CheckCircle, XCircle } from "lucide-react";
+import Link from "next/link";
 
 interface PaystackCheckoutProps {
   amount?: number;
+  usdAmount?: number;
   productName?: string;
   onSuccess?: (reference: string) => void;
 }
@@ -26,7 +28,8 @@ declare global {
 }
 
 export default function PaystackCheckout({
-  amount = 10000,
+  amount = 16000,
+  usdAmount = 10,
   productName = "AI Mastery Class",
   onSuccess,
 }: PaystackCheckoutProps) {
@@ -136,7 +139,7 @@ export default function PaystackCheckout({
             </>
           ) : (
             <>
-              Pay ${amount} & Enroll
+              Pay ₦{amount.toLocaleString()} (${usdAmount}) & Enroll
               <ArrowRight size={18} aria-hidden />
             </>
           )}
@@ -152,6 +155,13 @@ export default function PaystackCheckout({
         <p className="text-xs text-muted">
           Secured by Paystack. Your card details are safe.
         </p>
+
+        <Link
+          href="/"
+          className="mt-4 inline-block text-xs text-muted underline transition hover:text-white"
+        >
+          ← Back to Home
+        </Link>
       </div>
     </div>
   );

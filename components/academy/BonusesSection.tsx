@@ -18,7 +18,7 @@ const bonuses = [
   },
   {
     icon: RefreshCw,
-    title: "Lifetime Curriculum Updates",
+    title: "1-Year Curriculum Updates",
     description:
       "AI evolves fast — and so does this course. Get all future updates, new modules, and advanced content at no extra cost.",
   },

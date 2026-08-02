@@ -32,7 +32,7 @@ export default function Navbar() {
           </span>
           <span className="leading-none">
             <span className="block text-base font-black uppercase tracking-tight text-white">Johnab</span>
-            <span className="mt-1 block text-xs uppercase tracking-wide text-muted">Technologies</span>
+            <span className="mt-1 block text-xs uppercase tracking-wide text-muted">{pathname.startsWith("/academy") ? "Academy" : "Technologies"}</span>
           </span>
         </Link>
 
@@ -55,13 +55,13 @@ export default function Navbar() {
             href="/academy"
             className="rounded-lg border-2 border-gold px-5 py-2.5 text-sm font-black text-gold transition hover:bg-gold hover:text-black"
           >
-            Enroll Now
+            Visit Johnab Academy
           </Link>
           <Link
             href="/book-appointment"
             className="gold-button rounded-lg px-5 py-3 text-sm font-black text-black transition"
           >
-            Book Appointment
+            Free consultation call
           </Link>
         </div>
 
@@ -103,14 +103,14 @@ export default function Navbar() {
                 className="rounded-lg border-2 border-gold px-5 py-3 text-center text-sm font-black text-gold"
                 onClick={() => setIsOpen(false)}
               >
-                Enroll Now
+                Visit Johnab Academy
               </Link>
               <Link
                 href="/book-appointment"
                 className="rounded-lg bg-gold px-5 py-3 text-center text-sm font-black text-black"
                 onClick={() => setIsOpen(false)}
               >
-                Book Appointment
+                Free consultation call
               </Link>
             </div>
           </motion.div>

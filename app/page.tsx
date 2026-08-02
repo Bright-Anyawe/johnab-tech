@@ -73,12 +73,12 @@ export default function Home() {
               </div>
               <div className="block">
                 <AnimatedText type="words">Solutions for</AnimatedText>{" "}
-                <AnimatedText type="words" className="gold-text inline-block">
+                <AnimatedText type="words" className="inline-block" textClassName="gold-text">
                   Modern
                 </AnimatedText>
               </div>
-              <div className="gold-text block">
-                <AnimatedText type="chars">Businesses</AnimatedText>
+              <div className="block">
+                <AnimatedText type="chars" textClassName="gold-text">Businesses</AnimatedText>
               </div>
             </h1>
             <div className="mt-8 text-xl font-semibold text-muted sm:text-2xl">

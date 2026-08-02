@@ -152,49 +152,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-panel py-20">
-        <div className="mx-auto max-w-[1340px] px-3 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={fadeUp}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="mx-auto max-w-3xl text-center"
-          >
-            <h2 className="text-3xl font-black tracking-tight text-white">
-              Video <span className="gold-text">Editing</span>
-            </h2>
-            <p className="mt-5 text-lg text-slate-400">
-              Professional video editing projects.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.12 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.06 } },
-            }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {[1, 2, 3].map((i) => (
-              <motion.div
-                key={`video-edit-${i}`}
-                variants={fadeUp}
-                transition={{ duration: 0.38, ease: "easeOut" }}
-                className="flex aspect-[16/9] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
-              >
-                <Play size={34} className="text-gold" aria-hidden />
-                <p className="mt-3 text-base font-medium text-muted">Video Edit {i}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       <section className="bg-ink py-20">
         <div className="mx-auto max-w-[1340px] px-3 sm:px-6 lg:px-8">
           <motion.div

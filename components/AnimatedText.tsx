@@ -7,11 +7,24 @@ interface AnimatedTextProps {
   children: string;
   type?: "chars" | "words";
   className?: string;
+  /**
+   * Applied to each word/character leaf span. Use for gradient text
+   * (background-clip) — it cannot work on the outer wrapper when children
+   * are animated with transforms/filters (stacking contexts break the clip).
+   */
+  textClassName?: string;
   delay?: number;
   tag?: string;
+  /**
+   * When true, the reveal is triggered on scroll-into-view (IntersectionObserver).
+   * Defaults to false so the reveal fires on mount — correct for above-the-fold
+   * content like the hero headline, where a missed observer callback would leave
+   * words stuck at opacity 0.
+   */
+  inView?: boolean;
 }
 
-export default function AnimatedText({ children, type = "chars", className = "", delay = 0, tag = "span" }: AnimatedTextProps) {
+export default function AnimatedText({ children, type = "chars", className = "", textClassName = "", delay = 0, tag = "span", inView = false }: AnimatedTextProps) {
   const shouldReduceMotion = useReducedMotion();
   const Tag: any = tag;
 
@@ -35,10 +48,17 @@ export default function AnimatedText({ children, type = "chars", className = "",
 
   return (
     <Tag className={className} aria-label={children}>
-      <motion.span initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={container} style={{ display: "inline-block", whiteSpace: "pre-wrap" }}>
+      <motion.span
+        initial="hidden"
+        {...(inView
+          ? { whileInView: "show" as const, viewport: { once: true, amount: 0.3 } }
+          : { animate: "show" as const })}
+        variants={container}
+        style={{ display: "inline-block", whiteSpace: "pre-wrap" }}
+      >
         {parts.map((part, i) => (
           <motion.span key={i} variants={child} style={{ display: "inline-block", overflow: "hidden" }}>
-            <span style={{ display: "inline-block", transform: "translateZ(0)" }}>{part}</span>
+            <span className={textClassName || undefined} style={{ display: "inline-block", transform: "translateZ(0)" }}>{part}</span>
           </motion.span>
         ))}
       </motion.span>

@@ -106,6 +106,20 @@ export default function Footer() {
           </ul>
         </div>
       </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-[1360px] flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} JOHNAB Technologies Limited. All rights reserved.</p>
+          <nav aria-label="Legal" className="flex flex-col items-center gap-2 sm:items-end">
+            <Link href="/terms" className="transition hover:text-gold">
+              Terms &amp; Conditions
+            </Link>
+            <Link href="/refund-policy" className="transition hover:text-gold">
+              Refund Policy
+            </Link>
+          </nav>
+        </div>
+      </div>
     </footer>
   );
 }
