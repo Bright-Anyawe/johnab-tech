@@ -1,4 +1,5 @@
 import { Globe, Mail, Phone, Youtube } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const quickLinks = [
@@ -22,18 +23,14 @@ export default function Footer() {
     <footer id="contact" className="border-t border-white/10 bg-panel">
       <div className="mx-auto grid max-w-[1360px] gap-10 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <Link href="/" className="flex items-center gap-3">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-gold text-lg font-black text-black">
-              J
-            </span>
-            <span>
-              <span className="block text-lg font-black uppercase leading-none text-white">
-                Johnab
-              </span>
-              <span className="mt-1 block text-xs uppercase tracking-wide text-muted">
-                Technologies Limited
-              </span>
-            </span>
+          <Link href="/" className="flex items-center" aria-label="Jonab Technologies Limited - Home">
+            <Image
+              src="/Jonab logo.png"
+              alt="Jonab Technologies Limited logo"
+              width={1536}
+              height={1024}
+              className="h-14 w-auto object-contain"
+            />
           </Link>
           <p className="mt-5 max-w-xs text-base leading-7 text-slate-400">
             Innovative Digital & AI Solutions for Modern Businesses. We Build. We Automate. We Grow

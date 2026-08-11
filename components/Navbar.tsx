@@ -27,14 +27,15 @@ export default function Navbar() {
         className="mx-auto flex h-20 max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Primary navigation"
       >
-        <Link href="/" className="flex items-center gap-3">
-          <span className="grid h-10 w-10 place-items-center rounded-xl bg-gold text-lg font-black text-black shadow-glow">
-            J
-          </span>
-          <span className="leading-none">
-            <span className="block text-base font-black uppercase tracking-tight text-white">Johnab</span>
-            <span className="mt-1 block text-xs uppercase tracking-wide text-muted">{pathname.startsWith("/academy") ? "Academy" : "Technologies"}</span>
-          </span>
+        <Link href="/" className="flex items-center" aria-label="Jonab Technologies Limited - Home">
+          <Image
+            src="/Jonab logo.png"
+            alt="Jonab Technologies Limited logo"
+            width={1536}
+            height={1024}
+            priority
+            className="h-12 w-auto object-contain"
+          />
         </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
