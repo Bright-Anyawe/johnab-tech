@@ -67,7 +67,7 @@ export default function FinalCTASection() {
             Enroll Now — Limited Spots <ArrowRight size={20} aria-hidden />
           </a>
           <a
-            href="https://wa.me/8159574995"
+            href="https://wa.me/2348159574995"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 rounded-xl border-2 border-gold/60 px-12 py-5 text-lg font-black text-gold transition hover:bg-gold/10"

@@ -17,8 +17,8 @@ const contactMethods = [
   },
   {
     title: "Email",
-    value: "Johnabtechnologieslimited@gmail.com",
-    href: "mailto:Johnabtechnologieslimited@gmail.com",
+    value: "info@johnabtechnologieslimited.com",
+    href: "mailto:info@johnabtechnologieslimited.com",
     icon: Mail,
   },
   {

@@ -77,10 +77,10 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:Johnabtechnologieslimited@gmail.com"
+                href="mailto:info@johnabtechnologieslimited.com"
                 className="inline-flex items-center gap-3 transition hover:text-gold"
               >
-                <Mail size={17} className="text-gold" aria-hidden /> Johnabtechnologieslimited@gmail.com
+                <Mail size={17} className="text-gold" aria-hidden /> info@johnabtechnologieslimited.com
               </a>
             </li>
             <li>

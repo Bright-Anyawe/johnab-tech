@@ -7,15 +7,21 @@ import {
   User,
   Hash,
   CreditCard,
+  MessageCircle,
 } from "lucide-react";
 import { useState } from "react";
 import PaystackCheckout from "./PaystackCheckout";
 
 const bankDetails = [
-  { icon: Hash, label: "Account Number", value: "1959349693" },
-  { icon: User, label: "Account Name", value: "JOHN ABU ANTEYI" },
-  { icon: Building2, label: "Bank Name", value: "ACCESS BANK NIGERIA" },
+  { icon: Hash, label: "Account Number", value: "1030935348" },
+  { icon: User, label: "Account Name", value: "JOHNAB TECHNOLOGIES LIMITED" },
+  { icon: Building2, label: "Bank Name", value: "United Bank for Africa (UBA)" },
 ];
+
+const WHATSAPP_NUMBER = "2348159574995";
+const bankTransferWhatsappUrl = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(
+  "Hi JOHNAB, I just made a bank transfer for the AI Mastery Class. Please confirm my payment and grant me access."
+)}`;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -121,10 +127,15 @@ export default function PaymentSection() {
               ))}
             </div>
 
-            <div className="mt-6 rounded-xl border border-gold/20 bg-gold/5 p-4 text-center text-sm text-slate-300">
-              After payment, contact us on WhatsApp for confirmation and
-              instant access.
-            </div>
+            <a
+              href={bankTransferWhatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 flex items-center justify-center gap-2 rounded-xl border border-gold/20 bg-gold/5 p-4 text-center text-sm font-semibold text-slate-200 transition hover:border-gold/50 hover:bg-gold/10"
+            >
+              <MessageCircle size={18} className="shrink-0 text-gold" aria-hidden />
+              After payment, contact us on WhatsApp for confirmation and instant access.
+            </a>
           </motion.div>
         </motion.div>
 
@@ -137,7 +148,7 @@ export default function PaymentSection() {
         >
           Need help? Contact us on WhatsApp —{" "}
           <a
-            href="https://wa.me/8159574995"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gold underline"

@@ -2,26 +2,106 @@
 
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import { motion } from "framer-motion";
-import { ExternalLink, Image as ImageIcon, Play } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink, Image as ImageIcon, Play, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const videos = [
-  { title: "Project Video 1", featured: false },
-  { title: "Project Video 2", featured: true },
-  { title: "Project Video 3", featured: false },
-  { title: "Project Video 4", featured: false },
-  { title: "Project Video 5", featured: false },
-  { title: "Project Video 6", featured: false },
+  {
+    title: "Project Video 1",
+    featured: false,
+    driveId: "1xa-n9LDR8Ol4rnYLvbT6m7IXiZ60bXZ8",
+    thumbnail: "/portfolio-video-1.jpg",
+  },
+  {
+    title: "Project Video 2",
+    featured: true,
+    driveId: "1iIrz7PL4i6_wX3wwm4rZNtmoDTz1Kaka",
+    thumbnail: "/portfolio-video-2.jpg",
+  },
+  {
+    title: "Project Video 3",
+    featured: false,
+    driveId: "1ot3Q_Z7GnLNRSkwtX8lfmsDIeZzvoVW8",
+    thumbnail: "/portfolio-video-3.jpg",
+  },
+  {
+    title: "Project Video 4",
+    featured: false,
+    driveId: "1RaA9P9YeH21fooQaKbfOMZ9s0RLsWUJ5",
+    thumbnail: "/portfolio-video-4.jpg",
+  },
+  {
+    title: "Project Video 5",
+    featured: false,
+    driveId: "1yApQVmPSQey7UJVBG-aYD9x1q3MZ6tAA",
+    thumbnail: "/portfolio-video-5.jpg",
+  },
+  {
+    title: "Project Video 6",
+    featured: false,
+    driveId: "1OjD1v9UovwbpX290WBSZq5DPLKLLlmgq",
+    thumbnail: "/portfolio-video-6.jpg",
+  },
+];
+
+const aiVideos = [
+  {
+    title: "AI Video 1",
+    driveId: "1EPV2kZWKvKcIx6gUDuQa-8nTKY9ey_Vv",
+    thumbnail: "/portfolio-ai-video-1.jpg",
+  },
+  {
+    title: "AI Video 2",
+    driveId: "1EBFvtHZpz3aHpnBYu-Gms0R377hU4tLj",
+    thumbnail: "/portfolio-ai-video-2.jpg",
+  },
+  {
+    title: "AI Video 3",
+    driveId: "1-IiKr5XhsReYUoLgICPca-KA3ucVOLXg",
+    thumbnail: "/portfolio-ai-video-3.jpg",
+  },
 ];
 
 const images = [
-  { title: "Portfolio Image 1", featured: false },
-  { title: "Portfolio Image 2", featured: true },
-  { title: "Portfolio Image 3", featured: false },
-  { title: "Portfolio Image 4", featured: false },
-  { title: "Portfolio Image 5", featured: false },
-  { title: "Portfolio Image 6", featured: false },
+  {
+    title: "Portfolio Image 1",
+    featured: false,
+    driveId: "12apMoRT-QZbsf8YRqxQIpJnIkHrUAtKA",
+    thumbnail: "/portfolio-image-1.png",
+  },
+  {
+    title: "Portfolio Image 2",
+    featured: true,
+    driveId: "1Mv57vwlfRLgzVIv0uwayfMf0GQIllDyc",
+    thumbnail: "/portfolio-image-2.jpg",
+  },
+  {
+    title: "Portfolio Image 3",
+    featured: false,
+    driveId: "1u_ELOp0T74g9Gw_0w7KKoAnR8mTSxstd",
+    thumbnail: "/portfolio-image-3.png",
+  },
+  {
+    title: "Portfolio Image 4",
+    featured: false,
+    driveId: "1DmxzSjt--1csDIlYJZW0Z3KZFJXnwIcc",
+    thumbnail: "/portfolio-image-4.png",
+  },
+  {
+    title: "Portfolio Image 5",
+    featured: false,
+    driveId: "1pe38lLkJpb2joiZmk2FHY-xit2adpSoR",
+    thumbnail: "/portfolio-image-5.jpg",
+  },
+  {
+    title: "Portfolio Image 6",
+    featured: false,
+    driveId: "1WSRT44CHyjc5dYKFQlKNwOQXwQzVhF8m",
+    thumbnail: "/portfolio-image-6.jpg",
+  },
 ];
 
 const fadeUp = {
@@ -30,6 +110,11 @@ const fadeUp = {
 };
 
 export default function PortfolioPage() {
+  const [activeVideo, setActiveVideo] = useState<
+    (typeof videos)[number] | (typeof aiVideos)[number] | null
+  >(null);
+  const [activeImage, setActiveImage] = useState<(typeof images)[number] | null>(null);
+
   return (
     <main className="min-h-screen bg-ink text-white">
       <Navbar />
@@ -88,17 +173,37 @@ export default function PortfolioPage() {
                 type="button"
                 variants={fadeUp}
                 transition={{ duration: 0.38, ease: "easeOut" }}
-                className={`group flex aspect-[16/9] flex-col justify-end rounded-lg border p-4 text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold/70 ${
+                onClick={() => video.driveId && setActiveVideo(video)}
+                disabled={!video.driveId}
+                className={`group overflow-hidden rounded-lg border text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold/70 ${
                   video.featured
                     ? "border-gold/70 bg-gold/25"
                     : "border-white/10 bg-[#202020]"
-                }`}
+                } ${video.driveId ? "cursor-pointer" : "cursor-default"}`}
                 aria-label={`Play ${video.title}`}
               >
-                <span className="m-auto grid h-16 w-16 place-items-center rounded-full bg-gold/25 text-gold transition group-hover:bg-gold group-hover:text-black">
-                  <Play size={34} fill="currentColor" aria-hidden />
+                <span className="relative block aspect-[16/9] overflow-hidden bg-black">
+                  {video.thumbnail ? (
+                    <Image
+                      src={video.thumbnail}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span className="grid h-full w-full place-items-center">
+                      <ImageIcon size={40} className="text-muted" aria-hidden />
+                    </span>
+                  )}
+                  <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold/25 text-gold transition group-hover:bg-gold group-hover:text-black">
+                    <Play size={34} fill="currentColor" aria-hidden />
+                  </span>
                 </span>
-                <span className="text-base font-medium text-muted">{video.title}</span>
+                <span className="block p-4">
+                  <span className="text-base font-medium text-muted">{video.title}</span>
+                </span>
               </motion.button>
             ))}
           </motion.div>
@@ -134,19 +239,99 @@ export default function PortfolioPage() {
             className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {images.map((image) => (
-              <motion.div
+              <motion.button
                 key={image.title}
+                type="button"
                 variants={fadeUp}
                 transition={{ duration: 0.38, ease: "easeOut" }}
-                className={`flex aspect-[16/12] flex-col items-center justify-center rounded-lg border transition-all duration-300 hover:-translate-y-1 hover:border-gold/70 ${
+                onClick={() => image.thumbnail && setActiveImage(image)}
+                disabled={!image.thumbnail}
+                className={`group overflow-hidden rounded-lg border text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold/70 ${
                   image.featured
                     ? "border-gold/70 bg-gold/25"
                     : "border-white/10 bg-[#202020]"
-                }`}
+                } ${image.thumbnail ? "cursor-pointer" : "cursor-default"}`}
+                aria-label={`View ${image.title}`}
               >
-                <ImageIcon size={40} className="text-muted" aria-hidden />
-                <p className="mt-3 text-base font-medium text-muted">{image.title}</p>
-              </motion.div>
+                <span className="relative block aspect-[16/12] overflow-hidden bg-black">
+                  {image.thumbnail ? (
+                    <Image
+                      src={image.thumbnail}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <span className="grid h-full w-full place-items-center">
+                      <ImageIcon size={40} className="text-muted" aria-hidden />
+                    </span>
+                  )}
+                </span>
+                <span className="block p-4">
+                  <span className="text-base font-medium text-muted">{image.title}</span>
+                </span>
+              </motion.button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-panel py-20">
+        <div className="mx-auto max-w-[1340px] px-3 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={fadeUp}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="mx-auto max-w-3xl text-center"
+          >
+            <h2 className="text-3xl font-black tracking-tight text-white">
+              AI Video Creation <span className="gold-text">Gallery</span>
+            </h2>
+            <p className="mt-5 text-lg text-slate-400">
+              AI-generated video content and creations.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.12 }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.06 } },
+            }}
+            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {aiVideos.map((video) => (
+              <motion.button
+                key={video.title}
+                type="button"
+                variants={fadeUp}
+                transition={{ duration: 0.38, ease: "easeOut" }}
+                onClick={() => setActiveVideo(video)}
+                className="group overflow-hidden rounded-lg border border-white/10 bg-[#202020] text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
+                aria-label={`Play ${video.title}`}
+              >
+                <span className="relative block aspect-[16/9] overflow-hidden bg-black">
+                  <Image
+                    src={video.thumbnail}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold/25 text-gold transition group-hover:bg-gold group-hover:text-black">
+                    <Play size={34} fill="currentColor" aria-hidden />
+                  </span>
+                </span>
+                <span className="block p-4">
+                  <span className="text-base font-medium text-muted">{video.title}</span>
+                </span>
+              </motion.button>
             ))}
           </motion.div>
         </div>
@@ -203,48 +388,93 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-panel py-20">
-        <div className="mx-auto max-w-[1340px] px-3 sm:px-6 lg:px-8">
+      <AnimatePresence>
+        {activeVideo ? (
           <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.25 }}
-            variants={fadeUp}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="mx-auto max-w-3xl text-center"
+            className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeVideo.title}
+            onClick={() => setActiveVideo(null)}
           >
-            <h2 className="text-3xl font-black tracking-tight text-white">
-              AI Video Creation <span className="gold-text">Gallery</span>
-            </h2>
-            <p className="mt-5 text-lg text-slate-400">
-              AI-generated video content and creations.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="w-full max-w-5xl overflow-hidden rounded-lg border border-white/15 bg-ink shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <h2 className="text-base font-semibold text-white">{activeVideo.title}</h2>
+                <button
+                  type="button"
+                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  onClick={() => setActiveVideo(null)}
+                  aria-label="Close video modal"
+                >
+                  <X size={20} aria-hidden />
+                </button>
+              </div>
+              <div className="aspect-video bg-black">
+                <iframe
+                  className="h-full w-full"
+                  src={`https://drive.google.com/file/d/${activeVideo.driveId}/preview`}
+                  title={activeVideo.title}
+                  allow="autoplay"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-
+        ) : null}
+        {activeImage ? (
           <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.12 }}
-            variants={{
-              hidden: {},
-              show: { transition: { staggerChildren: 0.06 } },
-            }}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label={activeImage.title}
+            onClick={() => setActiveImage(null)}
           >
-            {[1, 2, 3].map((i) => (
-              <motion.div
-                key={`ai-video-${i}`}
-                variants={fadeUp}
-                transition={{ duration: 0.38, ease: "easeOut" }}
-                className="flex aspect-[16/9] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
-              >
-                <Play size={34} className="text-gold" aria-hidden />
-                <p className="mt-3 text-base font-medium text-muted">AI Video {i}</p>
-              </motion.div>
-            ))}
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 24, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="w-full max-w-4xl overflow-hidden rounded-lg border border-white/15 bg-ink shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                <h2 className="text-base font-semibold text-white">{activeImage.title}</h2>
+                <button
+                  type="button"
+                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  onClick={() => setActiveImage(null)}
+                  aria-label="Close image modal"
+                >
+                  <X size={20} aria-hidden />
+                </button>
+              </div>
+              <div className="relative aspect-[16/12] bg-black">
+                <Image
+                  src={activeImage.thumbnail ?? ""}
+                  alt={activeImage.title}
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </div>
-      </section>
+        ) : null}
+      </AnimatePresence>
 
       <section className="bg-ink py-20">
         <motion.div
