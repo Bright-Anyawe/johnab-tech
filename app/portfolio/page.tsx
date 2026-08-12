@@ -391,7 +391,7 @@ export default function PortfolioPage() {
       <AnimatePresence>
         {activeVideo ? (
           <motion.div
-            className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-0 backdrop-blur-sm sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -405,23 +405,25 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="w-full max-w-5xl overflow-hidden rounded-lg border border-white/15 bg-ink shadow-2xl"
+              className="flex h-full w-full flex-col overflow-hidden bg-ink shadow-2xl sm:h-auto sm:max-h-[85dvh] sm:w-auto sm:max-w-5xl sm:rounded-lg sm:border sm:border-white/15"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                <h2 className="text-base font-semibold text-white">{activeVideo.title}</h2>
+              <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
+                <h2 className="truncate pr-3 text-sm font-semibold text-white sm:text-base">
+                  {activeVideo.title}
+                </h2>
                 <button
                   type="button"
-                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
                   onClick={() => setActiveVideo(null)}
                   aria-label="Close video modal"
                 >
                   <X size={20} aria-hidden />
                 </button>
               </div>
-              <div className="aspect-video bg-black">
+              <div className="relative min-h-0 flex-1 bg-black sm:aspect-video sm:flex-none">
                 <iframe
-                  className="h-full w-full"
+                  className="absolute inset-0 h-full w-full"
                   src={`https://drive.google.com/file/d/${activeVideo.driveId}/preview`}
                   title={activeVideo.title}
                   allow="autoplay"
@@ -434,7 +436,7 @@ export default function PortfolioPage() {
         ) : null}
         {activeImage ? (
           <motion.div
-            className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-0 backdrop-blur-sm sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -448,21 +450,23 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="w-full max-w-4xl overflow-hidden rounded-lg border border-white/15 bg-ink shadow-2xl"
+              className="flex h-full w-full flex-col overflow-hidden bg-ink shadow-2xl sm:h-auto sm:max-h-[85dvh] sm:w-auto sm:max-w-4xl sm:rounded-lg sm:border sm:border-white/15"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                <h2 className="text-base font-semibold text-white">{activeImage.title}</h2>
+              <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
+                <h2 className="truncate pr-3 text-sm font-semibold text-white sm:text-base">
+                  {activeImage.title}
+                </h2>
                 <button
                   type="button"
-                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
                   onClick={() => setActiveImage(null)}
                   aria-label="Close image modal"
                 >
                   <X size={20} aria-hidden />
                 </button>
               </div>
-              <div className="relative aspect-[16/12] bg-black">
+              <div className="relative min-h-0 flex-1 bg-black sm:aspect-[16/12] sm:flex-none">
                 <Image
                   src={activeImage.thumbnail ?? ""}
                   alt={activeImage.title}

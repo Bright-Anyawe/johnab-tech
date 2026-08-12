@@ -91,7 +91,7 @@ export default function VideoGallery({ videos }: VideoGalleryProps) {
       <AnimatePresence>
         {selectedVideo ? (
           <motion.div
-            className="fixed inset-0 z-50 grid place-items-center bg-black/80 p-4 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-0 backdrop-blur-sm sm:p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -105,30 +105,30 @@ export default function VideoGallery({ videos }: VideoGalleryProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="w-full max-w-5xl overflow-hidden rounded-lg border border-white/15 bg-ink shadow-2xl"
+              className="flex h-full w-full flex-col overflow-hidden bg-ink shadow-2xl sm:h-auto sm:max-h-[85dvh] sm:w-auto sm:max-w-5xl sm:rounded-lg sm:border sm:border-white/15"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                <div>
+              <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
+                <div className="min-w-0">
                   <p className="text-xs font-semibold uppercase tracking-widest text-circuit">
                     {selectedVideo.category}
                   </p>
-                  <h2 className="mt-1 text-base font-semibold text-white">
+                  <h2 className="mt-1 truncate text-base font-semibold text-white">
                     {selectedVideo.title}
                   </h2>
                 </div>
                 <button
                   type="button"
-                  className="grid h-10 w-10 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
+                  className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-white/15 text-slate-200 transition hover:bg-white/10 hover:text-white"
                   onClick={() => setSelectedVideo(null)}
                   aria-label="Close video modal"
                 >
                   <X size={20} aria-hidden />
                 </button>
               </div>
-              <div className="aspect-video bg-black">
+              <div className="relative min-h-0 flex-1 bg-black sm:aspect-video sm:flex-none">
                 <iframe
-                  className="h-full w-full"
+                  className="absolute inset-0 h-full w-full"
                   src={`https://www.youtube-nocookie.com/embed/${selectedVideo.id}?autoplay=1&rel=0&modestbranding=1`}
                   title={selectedVideo.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
