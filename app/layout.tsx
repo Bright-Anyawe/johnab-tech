@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: "Johnab Technologies Limited",
   description:
     "Corporate IT consulting, managed technology services, cybersecurity, cloud transformation, and digital systems delivery.",
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "32x32" },
+    ],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
