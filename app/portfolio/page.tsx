@@ -63,8 +63,8 @@ const aiVideos = [
   },
   {
     title: "AI Video 3",
-    driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
-    thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
+    driveId: "1tXoZuj7lMje3BRN_-q2QXSRR6Hoqc5q7",
+    thumbnail: getDriveThumbnailUrl("1tXoZuj7lMje3BRN_-q2QXSRR6Hoqc5q7"),
   },
   {
     title: "AI Video 4",
