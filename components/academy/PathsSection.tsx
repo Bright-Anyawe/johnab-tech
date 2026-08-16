@@ -49,6 +49,7 @@ const paths = [
       "Personalized curriculum",
       "Screen sharing & demos",
       "Recording Allowed",
+      "One month support",
     ],
   },
   {

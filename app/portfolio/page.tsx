@@ -50,32 +50,44 @@ const videos = [
   },
 ];
 
-const automationVideo = {
-  title: "Automation Workflow",
-  driveId: "1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz",
-  thumbnail: getDriveThumbnailUrl("1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz"),
-};
-
 const aiVideos = [
   {
     title: "AI Video 1",
+    driveId: "1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz",
+    thumbnail: getDriveThumbnailUrl("1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz"),
+  },
+  {
+    title: "AI Video 2",
     driveId: "1EBFvtHZpz3aHpnBYu-Gms0R377hU4tLj",
     thumbnail: "/portfolio-ai-video-2.jpg",
   },
   {
-    title: "AI Video 2",
+    title: "AI Video 3",
     driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
     thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
   },
   {
-    title: "AI Video 3",
+    title: "AI Video 4",
     driveId: "1844YyQm4gqahpHY93znL_CLL04qraMrU",
     thumbnail: getDriveThumbnailUrl("1844YyQm4gqahpHY93znL_CLL04qraMrU"),
   },
   {
-    title: "AI Video 4",
+    title: "AI Video 5",
     driveId: "1Ms5QwulNgb5vTYge7iM5OZMddy2KwGC_",
     thumbnail: getDriveThumbnailUrl("1Ms5QwulNgb5vTYge7iM5OZMddy2KwGC_"),
+  },
+  {
+    title: "AI Video 6",
+    driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
+    thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
+  },
+];
+
+const automationVideos = [
+  {
+    title: "Automation Workflow",
+    driveId: "1dnhtbNMOc1ER0TiI7AosI7zr8C2fRyFz",
+    thumbnail: getDriveThumbnailUrl("1dnhtbNMOc1ER0TiI7AosI7zr8C2fRyFz"),
   },
 ];
 
@@ -125,10 +137,7 @@ const fadeUp = {
 
 export default function PortfolioPage() {
   const [activeVideo, setActiveVideo] = useState<
-    | (typeof videos)[number]
-    | (typeof aiVideos)[number]
-    | (typeof automationVideo)
-    | null
+    (typeof videos)[number] | (typeof aiVideos)[number] | (typeof automationVideos)[number] | null
   >(null);
   const [activeImage, setActiveImage] = useState<(typeof images)[number] | null>(null);
 
@@ -368,41 +377,48 @@ export default function PortfolioPage() {
               Automation <span className="gold-text">Showcase</span>
             </h2>
             <p className="mt-5 text-lg text-slate-400">
-              A featured automation solution in action — watch how we streamline workflows.
+              Our business automation workflows in action.
             </p>
           </motion.div>
 
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.12 }}
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.06 } },
+            }}
             className="mt-12 flex justify-center"
           >
-            <motion.button
-              type="button"
-              onClick={() => setActiveVideo(automationVideo)}
-              className="group relative block w-full max-w-3xl overflow-hidden rounded-xl border border-white/10"
-              aria-label={`Play ${automationVideo.title}`}
-            >
-              <span className="relative block aspect-video w-full overflow-hidden bg-black">
-                <Image
-                  src={automationVideo.thumbnail}
-                  alt={automationVideo.title}
-                  fill
-                  sizes="100vw"
-                  className="object-cover transition duration-500 group-hover:scale-105"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <span className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold/25 text-gold transition group-hover:bg-gold group-hover:text-black">
-                  <Play size={42} fill="currentColor" aria-hidden />
+            {automationVideos.map((video) => (
+              <motion.button
+                key={video.title}
+                type="button"
+                variants={fadeUp}
+                transition={{ duration: 0.38, ease: "easeOut" }}
+                onClick={() => setActiveVideo(video)}
+                className="group w-full max-w-md overflow-hidden rounded-lg border border-white/10 bg-[#202020] text-left transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
+                aria-label={`Play ${video.title}`}
+              >
+                <span className="relative block aspect-[16/9] overflow-hidden bg-black">
+                  <Image
+                    src={video.thumbnail}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 400px, 100vw"
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-gold/25 text-gold transition group-hover:bg-gold group-hover:text-black">
+                    <Play size={34} fill="currentColor" aria-hidden />
+                  </span>
                 </span>
-              </span>
-              <span className="block p-4 text-center">
-                <span className="text-lg font-medium text-muted">{automationVideo.title}</span>
-              </span>
-            </motion.button>
+                <span className="block p-4">
+                  <span className="text-base font-medium text-muted">{video.title}</span>
+                </span>
+              </motion.button>
+            ))}
           </motion.div>
         </div>
       </section>
