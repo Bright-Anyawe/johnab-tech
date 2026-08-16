@@ -53,8 +53,8 @@ const videos = [
 const aiVideos = [
   {
     title: "AI Video 1",
-    driveId: "1EPV2kZWKvKcIx6gUDuQa-8nTKY9ey_Vv",
-    thumbnail: "/portfolio-ai-video-1.jpg",
+    driveId: "1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz",
+    thumbnail: getDriveThumbnailUrl("1Euv5eP9GuWipLEF1-p-kA22gjPP75VUz"),
   },
   {
     title: "AI Video 2",
