@@ -8,6 +8,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+const getDriveThumbnailUrl = (driveId: string) =>
+  `https://drive.google.com/thumbnail?id=${driveId}&sz=w1280`;
+
 const videos = [
   {
     title: "Project Video 1",
@@ -18,14 +21,14 @@ const videos = [
   {
     title: "Project Video 2",
     featured: true,
-    driveId: "1iIrz7PL4i6_wX3wwm4rZNtmoDTz1Kaka",
-    thumbnail: "/portfolio-video-2.jpg",
+    driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
+    thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
   },
   {
     title: "Project Video 3",
     featured: false,
-    driveId: "1ot3Q_Z7GnLNRSkwtX8lfmsDIeZzvoVW8",
-    thumbnail: "/portfolio-video-3.jpg",
+    driveId: "1eMChsRqJdyNV-i9ulCxxLzgWvcZy5omw",
+    thumbnail: getDriveThumbnailUrl("1eMChsRqJdyNV-i9ulCxxLzgWvcZy5omw"),
   },
   {
     title: "Project Video 4",
@@ -60,8 +63,8 @@ const aiVideos = [
   },
   {
     title: "AI Video 3",
-    driveId: "1-IiKr5XhsReYUoLgICPca-KA3ucVOLXg",
-    thumbnail: "/portfolio-ai-video-3.jpg",
+    driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
+    thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
   },
 ];
 
@@ -366,22 +369,46 @@ export default function PortfolioPage() {
             className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
             {[
-              { title: "Website 1", type: "Website" },
-              { title: "Website 2", type: "Website" },
-              { title: "Website 3", type: "Website" },
-              { title: "App 1", type: "App" },
-              { title: "App 2", type: "App" },
-              { title: "App 3", type: "App" },
+              {
+                title: "KlassBase",
+                type: "Website",
+                thumbnail: "/KlassBase-website.png",
+                url: "https://www.klassbase.com",
+              },
+              {
+                title: "Johnab Academy",
+                type: "Website",
+                thumbnail: "/Johnab-Academy-website.png",
+                url: "https://johnabacademy.lovable.app/",
+              },
+              {
+                title: "Adwise",
+                type: "Website",
+                thumbnail: "/Adwise-website.png",
+                url: "https://pixel-perfect-capture-925.lovable.app/dashboard",
+              },
             ].map((item) => (
               <motion.div
                 key={item.title}
                 variants={fadeUp}
                 transition={{ duration: 0.38, ease: "easeOut" }}
-                className="flex aspect-[16/12] flex-col items-center justify-center rounded-lg border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
+                className="overflow-hidden rounded-lg border border-white/10 bg-[#202020] transition-all duration-300 hover:-translate-y-1 hover:border-gold/70"
               >
-                <ImageIcon size={40} className="text-gold" aria-hidden />
-                <p className="mt-1 text-xs font-bold uppercase tracking-wider text-gold">{item.type}</p>
-                <p className="text-base font-medium text-muted">{item.title}</p>
+                <Link href={item.url} target="_blank" rel="noreferrer" className="block">
+                  <div className="relative aspect-[16/12] w-full overflow-hidden bg-black">
+                    <Image
+                      src={item.thumbnail}
+                      alt={item.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition duration-500 hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <p className="text-xs font-bold uppercase tracking-wider text-gold">{item.type}</p>
+                    <p className="mt-1 text-base font-medium text-muted">{item.title}</p>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
@@ -405,7 +432,7 @@ export default function PortfolioPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.98 }}
               transition={{ duration: 0.22, ease: "easeOut" }}
-              className="flex h-full w-full flex-col overflow-hidden bg-ink shadow-2xl sm:h-auto sm:max-h-[85dvh] sm:w-auto sm:max-w-5xl sm:rounded-lg sm:border sm:border-white/15"
+              className="flex h-full w-full max-w-[92vw] flex-col overflow-hidden bg-ink shadow-2xl sm:h-[80vh] sm:max-h-[85vh] sm:w-[min(92vw,1360px)] sm:rounded-lg sm:border sm:border-white/15"
               onClick={(event) => event.stopPropagation()}
             >
               <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-3">
@@ -421,9 +448,9 @@ export default function PortfolioPage() {
                   <X size={20} aria-hidden />
                 </button>
               </div>
-              <div className="relative min-h-0 flex-1 bg-black sm:aspect-video sm:flex-none">
+              <div className="relative min-h-0 flex-1 bg-black">
                 <iframe
-                  className="absolute inset-0 h-full w-full"
+                  className="h-full w-full"
                   src={`https://drive.google.com/file/d/${activeVideo.driveId}/preview`}
                   title={activeVideo.title}
                   allow="autoplay"

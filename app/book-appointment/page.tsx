@@ -9,11 +9,11 @@ import Link from "next/link";
 const bookingOptions = [
   {
     title: "Free Consultation",
-    description: "A 15-minute call to discuss your goals and find the right path for you.",
+    description: "A 30-minute call to discuss your goals and find the right path for you.",
     price: "Free",
-    suffix: "/ 15 mins",
+    suffix: "/ 30 mins",
     cta: "Book a Call",
-    href: "https://calendly.com/johnabtechnologieslimited/15min",
+     href: "https://calendly.com/johnabtechnologieslimited/30min",
     icon: CalendarCheck,
     popular: false,
     features: [
