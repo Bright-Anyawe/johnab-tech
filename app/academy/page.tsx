@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Mastery Class - Master High-Income AI Skills",
     description:
-      "Complete AI training program with 10+ modules. Learn AI videos, graphics, chatbots, and more. Lifetime access included.",
+      "Complete AI training program with 10+ modules. Learn AI videos, graphics, chatbots, and more. Yearly access included.",
     type: "website",
   },
 };

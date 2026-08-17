@@ -11,7 +11,7 @@ import Link from "next/link";
 const academyFeatures = [
   { title: "Practical Training", description: "Hands-on projects" },
   { title: "Expert Mentors", description: "Industry professionals" },
-  { title: "Lifetime Access", description: "Learn at your pace" },
+  { title: "Yearly Access", description: "Learn at your pace" },
 ];
 
 const fadeUp = {

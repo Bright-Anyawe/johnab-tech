@@ -67,7 +67,7 @@ const paths = [
     features: [
       "Full course library access",
       "Step-by-step tutorials",
-      "Downloadable resources",
+      "Recorded videos",
       "Community access",
       "Certificate on completion",
     ],

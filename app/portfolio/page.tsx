@@ -89,6 +89,11 @@ const automationVideos = [
     driveId: "1dnhtbNMOc1ER0TiI7AosI7zr8C2fRyFz",
     thumbnail: getDriveThumbnailUrl("1dnhtbNMOc1ER0TiI7AosI7zr8C2fRyFz"),
   },
+  {
+    title: "Automation Workflow 2",
+    driveId: "1b17AdpE9WHi8zREW-_8C2ULGm3ObmVaB",
+    thumbnail: getDriveThumbnailUrl("1b17AdpE9WHi8zREW-_8C2ULGm3ObmVaB"),
+  },
 ];
 
 const images = [
@@ -389,7 +394,7 @@ export default function PortfolioPage() {
               hidden: {},
               show: { transition: { staggerChildren: 0.06 } },
             }}
-            className="mt-12 flex justify-center"
+            className="mt-12 flex justify-center gap-6"
           >
             {automationVideos.map((video) => (
               <motion.button

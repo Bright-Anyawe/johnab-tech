@@ -43,7 +43,7 @@ export default function HeroSection() {
         >
           From zero to earning — learn AI video creation, web development,
           graphics, chatbots, ads, and digital product design. Complete
-          step-by-step training with lifetime access.
+          step-by-step training with yearly access.
         </motion.p>
 
         <motion.div
@@ -76,7 +76,7 @@ export default function HeroSection() {
             <span className="text-gold">✓</span> 10+ Modules
           </span>
           <span className="flex items-center gap-2">
-            <span className="text-gold">✓</span> Lifetime Access
+            <span className="text-gold">✓</span> Yearly Access
           </span>
           <span className="flex items-center gap-2">
             <span className="text-gold">✓</span> Hands-on Projects

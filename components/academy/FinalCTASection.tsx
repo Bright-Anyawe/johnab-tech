@@ -45,7 +45,7 @@ export default function FinalCTASection() {
           </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300">
             <Clock size={16} className="text-gold" aria-hidden />
-            Lifetime Access
+            Yearly Access
           </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300">
             <MessageCircle size={16} className="text-gold" aria-hidden />
