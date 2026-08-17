@@ -21,8 +21,8 @@ const videos = [
   {
     title: "Project Video 2",
     featured: true,
-    driveId: "1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD",
-    thumbnail: getDriveThumbnailUrl("1xqtJwpePzVFULdV_CcJg2NbLxm11ZOaD"),
+    driveId: "1oDKZPdrittUZCAzj7P1HEovZQP7-3fZF",
+    thumbnail: getDriveThumbnailUrl("1oDKZPdrittUZCAzj7P1HEovZQP7-3fZF"),
   },
   {
     title: "Project Video 3",
