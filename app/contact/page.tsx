@@ -4,7 +4,8 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion } from "framer-motion";
-import { Globe, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Globe, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -53,7 +54,7 @@ export default function ContactPage() {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -63,9 +64,40 @@ export default function ContactPage() {
     },
   });
 
-  const onSubmit = (values: ContactFormValues) => {
-    console.info("Contact form submission", values);
-    reset();
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle"
+  );
+
+  const onSubmit = async (values: ContactFormValues) => {
+    setSubmitStatus("sending");
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/info@johnabtechnologieslimited.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            message: values.message,
+            _subject: "New contact form submission",
+            _captcha: "false",
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setSubmitStatus("success");
+      reset();
+    } catch {
+      setSubmitStatus("error");
+    }
   };
 
   return (
@@ -161,14 +193,26 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="gold-button mt-6 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-xl text-base font-black text-black transition"
+                disabled={submitStatus === "sending"}
+                className="gold-button mt-6 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-xl text-base font-black text-black transition disabled:cursor-not-allowed disabled:opacity-60"
               >
-                Send Message <Send size={19} aria-hidden />
+                {submitStatus === "sending" ? (
+                  <Loader2 size={19} className="animate-spin" aria-hidden />
+                ) : (
+                  <Send size={19} aria-hidden />
+                )}
+                {submitStatus === "sending" ? "Sending..." : "Send Message"}
               </button>
 
-              {isSubmitSuccessful ? (
+              {submitStatus === "success" ? (
                 <p className="mt-4 text-center text-sm font-semibold text-gold">
-                  Message captured. Backend delivery can be connected next.
+                  Message sent! We&apos;ll get back to you soon.
+                </p>
+              ) : null}
+
+              {submitStatus === "error" ? (
+                <p className="mt-4 text-center text-sm font-semibold text-red-400">
+                  Something went wrong. Please try again or email us directly.
                 </p>
               ) : null}
             </motion.form>
