@@ -40,7 +40,7 @@ const paths = [
     cta: "Book Mentorship",
     href: "https://api.whatsapp.com/send?phone=2348159574995&text=Hi%2C%20I%20want%20to%20book%20a%20One-on-One%20Mentorship%20session",
     icon: UserRound,
-    popular: false,
+    popular: true,
     payAmount: 95000,
     usdAmount: 70,
     features: [
@@ -61,7 +61,7 @@ const paths = [
     cta: "Join Academy",
     href: "#pricing",
     icon: GraduationCap,
-    popular: true,
+    popular: false,
     payAmount: 16000,
     usdAmount: 10,
     features: [
