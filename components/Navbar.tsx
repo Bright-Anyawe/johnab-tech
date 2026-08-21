@@ -24,7 +24,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-[#090909]/95 backdrop-blur-md">
       <nav
-        className="mx-auto flex h-20 max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8"
+        className="mx-auto flex h-28 max-w-[1360px] items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Primary navigation"
       >
         <Link href="/" className="flex items-center" aria-label="Jonab Technologies Limited - Home">
@@ -34,7 +34,7 @@ export default function Navbar() {
             width={1536}
             height={1024}
             priority
-            className="h-16 w-auto object-contain"
+            className="h-24 w-auto object-contain"
           />
         </Link>
 

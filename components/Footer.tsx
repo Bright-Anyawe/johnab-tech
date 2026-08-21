@@ -29,7 +29,7 @@ export default function Footer() {
               alt="Jonab Technologies Limited logo"
               width={1536}
               height={1024}
-              className="h-20 w-auto object-contain"
+              className="h-32 w-auto object-contain"
             />
           </Link>
           <p className="mt-5 max-w-xs text-base leading-7 text-slate-400">
